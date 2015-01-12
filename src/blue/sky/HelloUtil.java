@@ -1,6 +1,6 @@
 package blue.sky;
 
-public class Util {
+public class HelloUtil {
 	public static void printMsg(String s) {
 		System.out.println("INFO - " + s);
 	}
