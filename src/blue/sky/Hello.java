@@ -4,9 +4,9 @@ import blue.sky.HelloUtil;
 public class Hello {
 	
     public static void main(String []args) {
-        System.out.println("Hello World ver2.2a - try Git");
+        System.out.println("Hello World  - try Git !!");
         
-        HelloUtil.printMsg("Good-Bye!");
+        HelloUtil.printMsg("Success !! Good-Bye !");
      }
 
 }
