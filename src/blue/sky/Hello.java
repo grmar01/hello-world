@@ -7,6 +7,7 @@ public class Hello {
         System.out.println("Hello World  - fix error !!");
 
         HelloUtil.printMsg("Add #1");
+        HelloUtil.printMsg("Add #1 from gitbash");
         
         HelloUtil.printMsg("Success !! Good-Bye !");
      }

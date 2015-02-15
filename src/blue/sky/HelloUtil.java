@@ -2,7 +2,7 @@ package blue.sky;
 
 public class HelloUtil {
 	public static void printMsg(String s) {
-		System.out.println("INFO - " + s);
+		System.out.println("INFO - gitbash : " + s);
 	}
 
 }
