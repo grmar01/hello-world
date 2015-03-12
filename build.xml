@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="common" default="all" basedir=".">
+<project name="hello" default="all" basedir=".">
    <description> Build file for hello module.
    </description>
    <property name="app.name"        value="hello"/>   
