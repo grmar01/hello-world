@@ -4,9 +4,9 @@ import blue.sky.HelloUtil;
 public class Hello {
 	
     public static void main(String []args) {
-        System.out.println("Hello World from ubuntu Go Go Go!! ");
+        System.out.println("Hello World from chadol on hp1-ubuntu !! ");
         
-        HelloUtil.printMsg("Success !! Good-Bye !");
+        HelloUtil.printMsg("Good-Bye from chadol !!");
      }
 
 }
