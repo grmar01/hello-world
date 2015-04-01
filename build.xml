@@ -61,6 +61,11 @@
 	  </jar>
    </target>
 
+	<target name="run">
+		<echo message="Running ${ant.project.name}.jar module ..." />
+		<java classpath="${dist.dir}/${app.name}.jar" classname="blue.sky.HelloWorld" />
+	</target>
+
    <!-- Default Build section -->
    <target name="all" depends="clean, init, compile, jar">
       <echo message="Building ${app.name} module ..."/>
