@@ -1,86 +1,79 @@
-<?xml version="1.0"? >
+<?xml version="1.0"?>
 
 <project name="hello" default="all" basedir=".">
-   <description> Build file for hello module.
+	<description> Build file for hello module.
    </description>
-   <property name="app.name"        value="hello"/>   
+	<property name="app.name" value="hello" />
 
-   <!-- Define directories -->
-   <property environment="env"/>
-   <property name="java.dir"        value="${env.JAVA_HOME}"/>
-   <property name="src.dir"         value="${basedir}/src"/>
-   <property name="lib.dir"         value="${basedir}/lib"/>
-   <property name="class.dir"       value="${basedir}/bin"/>
-   <property name="dist.dir"        value="${basedir}/dist"/>
-   
-   <!-- Define classpath -->
-   <path id="log4j.class.path">
-      <pathelement location="${lib.dir}/log4j-1.2.16.jar"/>
-   </path>
-   <path id="oracle.class.path">
-      <pathelement location="${lib.dir}/ojdbc14.jar"/>
-   </path>
-   <path id="clearRpt.class.path">
-      <pathelement location="${lib.dir}/clearRpt/CCLib.jar"/>
-      <pathelement location="${lib.dir}/clearRpt/ReportViewer.jar"/>
-      <pathelement location="${lib.dir}/clearRpt/ClearReports.jar"/>
-   </path>
-   <path id="ion.class.path">
-      <pathelement location="${lib.dir}/jmkv131p1.jar"/>
-   </path>
-   <path id="scm_utility.class.path">
-      <pathelement location="${lib.dir}/scm-utility.jar"/>
-   </path>
+	<tstamp>
+		<format property="timestamp.isoformat" pattern="yyyy-MM-dd'T'HH:mm:ss" locale="en" />
+	</tstamp>
 
-   <!-- Set project classpath -->
-   <path id="project.class.path">
-      <path refid="log4j.class.path"/>
-      <path refid="oracle.class.path"/>
-      <path refid="clearRpt.class.path"/>
-      <path refid="ion.class.path"/>
-      <path refid="scm_utility.class.path"/>
-   </path>
-   
-   <!-- Compilation section -->
-   <target name="compile">
-      <echo message="Compiling ${app.name} module ..."/>
-      <javac srcdir="${src.dir}"
-             destdir="${class.dir}"
-             debug="on"
-             optimize="off"
-             executable="${java.dir}/bin/javac">
-             <classpath refid="project.class.path"/>
-      </javac>
-   </target>
+	<!-- Define directories -->
+	<property environment="env" />
+	<property name="build.version" value="${env.BUILD.VERSION}" />
+	<property name="java.dir" value="${env.JAVA_HOME}" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="lib.dir" value="${basedir}/lib" />
+	<property name="class.dir" value="${basedir}/bin" />
+	<property name="dist.dir" value="${basedir}/dist" />
 
-   <target name="jar">
-      <echo message="Creating jar for ${app.name} ..."/>
-      <delete file="${dist.dir}/${app.name}.jar"/>
-      <jar destfile="${dist.dir}/${app.name}.jar"
-           basedir="${class.dir}">
-	  </jar>
-   </target>
+	<!-- Define classpath -->
+	<path id="log4j.class.path">
+		<pathelement location="${lib.dir}/log4j-1.2.16.jar" />
+	</path>
+	<path id="oracle.class.path">
+		<pathelement location="${lib.dir}/ojdbc14.jar" />
+	</path>
+
+	<!-- Set project classpath -->
+	<path id="project.class.path">
+		<path refid="log4j.class.path" />
+		<path refid="oracle.class.path" />
+	</path>
+
+	<!-- Compilation section -->
+	<target name="compile">
+		<echo message="Compiling ${app.name} module ..." />
+		<javac srcdir="${src.dir}" destdir="${class.dir}" debug="on" optimize="off" executable="${java.dir}/bin/javac">
+			<classpath refid="project.class.path" />
+		</javac>
+	</target>
+
+	<target name="jar">
+		<echo message="Creating jar for ${app.name} ..." />
+		<delete file="${dist.dir}/${app.name}.jar" />
+		<property name="manifest.mf" location="${src.dir}/manifest.mf" />
+		<manifest file="${manifest.mf}">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Sealed" value="true" />
+			<attribute name="Built-On" value="${timestamp.isoformat}" />
+			<attribute name="Version" value="${build.version}" />
+		</manifest>
+		<jar destfile="${dist.dir}/${app.name}.jar" manifest="${manifest.mf}" basedir="${class.dir}">
+		</jar>
+	</target>
 
 	<target name="run">
 		<echo message="Running ${ant.project.name}.jar module ..." />
 		<java classpath="${dist.dir}/${app.name}.jar" classname="blue.sky.Hello" />
 	</target>
 
-   <!-- Default Build section -->
-   <target name="all" depends="clean, init, compile, jar">
-      <echo message="Building ${app.name} module ..."/>
-   </target>
+	<!-- Default Build section -->
+	<target name="all" depends="clean, init, compile, jar">
+		<echo message="Building ${app.name} module ..." />
+	</target>
 
-   <target name="init">
-      <mkdir dir="${class.dir}"/>
-      <mkdir dir="${dist.dir}"/>
-   </target>
-	
-   <!-- Clean up all files that are generated -->
-   <target name="clean" description="Clean up">
-      <echo message="Cleanup ${app.name} module ..."/>
-      <delete dir="${class.dir}"/>
-      <delete dir="${dist.dir}"/>
-   </target>
+	<target name="init">
+		<mkdir dir="${class.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- Clean up all files that are generated -->
+	<target name="clean" description="Clean up">
+		<echo message="Cleanup ${app.name} module ..." />
+		<delete dir="${class.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
 
 </project>
