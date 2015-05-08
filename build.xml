@@ -65,6 +65,7 @@
 	</target>
 
 	<target name="init">
+		<echo message="++ init 1" />
 		<mkdir dir="${class.dir}" />
 		<mkdir dir="${dist.dir}" />
 	</target>
