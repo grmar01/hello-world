@@ -10,6 +10,7 @@ public class Hello {
         HelloUtil.printMsg("put correct issue# - 1st change #7 in HelloUtil ***");
         HelloUtil.printMsg("put wrong issue# - 1st change #8 in HelloUtil ***");
         HelloUtil.printMsg("Good-Bye from chadol !!");
+        HelloUtil.printMsg("New message");
      }
 
 }
