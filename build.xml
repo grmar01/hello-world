@@ -47,7 +47,7 @@
 		<manifest file="${manifest.mf}">
 			<attribute name="Built-By" value="${user.name}" />
 			<attribute name="Sealed" value="true" />
-			<attribute name="Built-On" value="${timestamp.isoformat}" />
+			<attribute name="Built-On" value="${timestamp.isoformat}" />s
 			<attribute name="Version" value="${build.version}" />
 		</manifest>
 		<jar destfile="${dist.dir}/${app.name}.jar" manifest="${manifest.mf}" basedir="${class.dir}">
@@ -65,7 +65,7 @@
 	</target>
 
 	<target name="init">
-		<echo message="++ init 1" />
+		<echo message="++ init 2" />
 		<mkdir dir="${class.dir}" />
 		<mkdir dir="${dist.dir}" />
 	</target>
